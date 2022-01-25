@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import ruby.oauth2.config.auth.LoginUser;
 import ruby.oauth2.config.auth.dto.SessionUser;
 
 import javax.servlet.http.HttpSession;
@@ -12,11 +13,11 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class IndexController {
 
-    private final HttpSession httpSession;
+//    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("userInfo");
+    public String index(Model model, @LoginUser SessionUser user) {
+//        SessionUser user = (SessionUser) httpSession.getAttribute("userInfo");
 
         if (user != null) {
             model.addAttribute("userName", user.getName());

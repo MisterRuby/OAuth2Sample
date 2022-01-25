@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()                                                // url별 권한 관리를 설정하는 옵션의 시작점
-                .mvcMatchers("/").permitAll()                               // permitAll() : 인증 x
+                .mvcMatchers("/", "/h2-console/**").permitAll()            // permitAll() : 인증 x
                 .antMatchers("/admin/**").hasRole(Role.ADMIN.name())     // hasRole() : 해당 권한이 있어야 접근 가능
                 .antMatchers("/user/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated();
